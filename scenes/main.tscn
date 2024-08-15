@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://o80ufu3gi5fa"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_s5fcy"]
+[ext_resource type="Texture2D" uid="uid://bb0k6boaem5b7" path="res://assets/Line.png" id="1_utcq0"]
+[ext_resource type="PackedScene" uid="uid://db8al1xjftekc" path="res://scenes/area.tscn" id="3_sggww"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_s5fcy")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CenterContainer" type="CenterContainer" parent="GUI"]
+layout_mode = 0
+offset_top = 200.0
+offset_right = 576.0
+offset_bottom = 300.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/CenterContainer"]
+layout_mode = 2
+
+[node name="EXIT" type="Button" parent="GUI/CenterContainer/HBoxContainer"]
+process_mode = 3
+texture_filter = 2
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "EXIT"
+
+[node name="RESTART" type="Button" parent="GUI/CenterContainer/HBoxContainer"]
+process_mode = 3
+texture_filter = 2
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "RESTART"
+
+[node name="Game Area" type="Node2D" parent="."]
+position = Vector2(288, 600)
+
+[node name="Lines" type="Node2D" parent="Game Area"]
+
+[node name="LeftVert" type="Sprite2D" parent="Game Area/Lines"]
+position = Vector2(-100, 0)
+scale = Vector2(0.5, 1)
+texture = ExtResource("1_utcq0")
+
+[node name="RightVert" type="Sprite2D" parent="Game Area/Lines"]
+position = Vector2(100, 0)
+scale = Vector2(0.5, 1)
+texture = ExtResource("1_utcq0")
+
+[node name="BottHor" type="Sprite2D" parent="Game Area/Lines"]
+position = Vector2(0, 100)
+rotation = 1.5708
+scale = Vector2(0.5, 1)
+texture = ExtResource("1_utcq0")
+
+[node name="TopHor" type="Sprite2D" parent="Game Area/Lines"]
+position = Vector2(0, -100)
+rotation = 1.5708
+scale = Vector2(0.5, 1)
+texture = ExtResource("1_utcq0")
+
+[node name="Areas" type="Node2D" parent="Game Area"]
+
+[node name="0,0" parent="Game Area/Areas" instance=ExtResource("3_sggww")]
+unique_name_in_owner = true
+position = Vector2(-188, 189)
+
+[node name="1,0" parent="Game Area/Areas" instance=ExtResource("3_sggww")]
+unique_name_in_owner = true
+position = Vector2(-1, 189)
+scale = Vector2(1.15, 1)
+
+[node name="2,0" parent="Game Area/Areas" instance=ExtResource("3_sggww")]
+unique_name_in_owner = true
+position = Vector2(189, 189)
+
+[node name="0,1" parent="Game Area/Areas" instance=ExtResource("3_sggww")]
+unique_name_in_owner = true
+position = Vector2(-188, 0)
+scale = Vector2(1, 1.15)
+
+[node name="1,1" parent="Game Area/Areas" instance=ExtResource("3_sggww")]
+unique_name_in_owner = true
+scale = Vector2(1.15, 1.15)
+
+[node name="2,1" parent="Game Area/Areas" instance=ExtResource("3_sggww")]
+unique_name_in_owner = true
+position = Vector2(187, 0)
+scale = Vector2(1, 1.15)
+
+[node name="0,2" parent="Game Area/Areas" instance=ExtResource("3_sggww")]
+unique_name_in_owner = true
+position = Vector2(-188, -186)
+
+[node name="1,2" parent="Game Area/Areas" instance=ExtResource("3_sggww")]
+unique_name_in_owner = true
+position = Vector2(0, -187)
+scale = Vector2(1.15, 1)
+
+[node name="2,2" parent="Game Area/Areas" instance=ExtResource("3_sggww")]
+unique_name_in_owner = true
+position = Vector2(187, -187)
+
+[connection signal="pressed" from="GUI/CenterContainer/HBoxContainer/EXIT" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="GUI/CenterContainer/HBoxContainer/RESTART" to="." method="_on_restart_pressed"]
